@@ -3,10 +3,14 @@
     <h1 class="link-title">本项目已上传</h1>
     <ul class="links">
       <li>
-        <a href="https://github.com/HomeMylove/CHINO">Github <i class="el-icon-link"></i></a>
+        <span>前端</span>
+        <a href="https://github.com/HomeMylove/dh-project"><i class="iconfont icon-github"></i></a>
+        <a href="https://github.com/HomeMylove/dh-project"><i class="iconfont icon-gitee"></i></a>
       </li>
       <li>
-        <a href="javascript:;">Gitee <i class="el-icon-link"></i></a>
+        <span>后端</span>
+        <a href="https://github.com/HomeMylove/dh-project"><i class="iconfont icon-github"></i></a>
+        <a href="https://github.com/HomeMylove/dh-project"><i class="iconfont icon-gitee"></i></a>
       </li>
     </ul>
   </div>
@@ -28,20 +32,35 @@ export default {
       transform: translateX(-50%);
       li{
           list-style: none;
+          span{
+            font-size: 30px;
+            margin-right: 20px;
+          }
           a{    
-              display: block;
-            //   background-color: #f00;
-              height: 60px;
-              width: 200px;
               font-size: 30px;
               line-height: 60px;
+              margin: 0px 20px;
               text-decoration: none;
               color:black;
-          }
 
-          a:hover{
+              i{
+                font-size: 40px;
+              }
+
+              .icon-github{
+                color: #666666;
+              }
+
+              .icon-gitee{
+                color:#c71d23;
+              }
+
+              i:hover{
               color:#0d6efd;
           }
+          }
+
+          
       }
   }
 }

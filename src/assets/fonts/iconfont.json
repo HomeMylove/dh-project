@@ -1,0 +1,30 @@
+{
+  "id": "3371141",
+  "name": "no name",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "5993150",
+      "name": "复制",
+      "font_class": "fuzhi",
+      "unicode": "ec7a",
+      "unicode_decimal": 60538
+    },
+    {
+      "icon_id": "18166834",
+      "name": "用户,男,头像",
+      "font_class": "user-man-full",
+      "unicode": "e8e9",
+      "unicode_decimal": 59625
+    },
+    {
+      "icon_id": "18166839",
+      "name": "用户,女,头像",
+      "font_class": "user-women-full",
+      "unicode": "e8ea",
+      "unicode_decimal": 59626
+    }
+  ]
+}

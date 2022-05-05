@@ -5,12 +5,12 @@
       <li>
         <span>前端</span>
         <a href="https://github.com/HomeMylove/dh-project"><i class="iconfont icon-github"></i></a>
-        <a href="https://github.com/HomeMylove/dh-project"><i class="iconfont icon-gitee"></i></a>
+        <a href="https://gitee.com/homemylove/dh-project"><i class="iconfont icon-gitee"></i></a>
       </li>
       <li>
         <span>后端</span>
-        <a href="https://github.com/HomeMylove/dh-project"><i class="iconfont icon-github"></i></a>
-        <a href="https://github.com/HomeMylove/dh-project"><i class="iconfont icon-gitee"></i></a>
+        <a href="https://github.com/HomeMylove/dh-backend"><i class="iconfont icon-github"></i></a>
+        <a href="https://gitee.com/homemylove/digital-humanities-backend"><i class="iconfont icon-gitee"></i></a>
       </li>
     </ul>
   </div>

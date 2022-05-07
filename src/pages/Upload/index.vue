@@ -5,19 +5,19 @@
         :type="uploadMode == 0 ? 'primary' : ''"
         @click="changeMode(0)"
         round
-        >上传作者</el-button
+        >{{$t('message.uploadAuthor')}}</el-button
       >
       <el-button
         :type="uploadMode == 1 ? 'primary' : ''"
         @click="changeMode(1)"
         round
-        >上传作品</el-button
+        >{{$t('message.uploadWork')}}</el-button
       >
     </div>
 
     <div class="upload-author" v-show="uploadMode == 0">
-      <el-form ref="form" :model="formAuthor" label-width="80px">
-        <el-form-item label="作者姓名">
+      <el-form ref="form" :model="formAuthor" label-width="120px">
+        <el-form-item :label="$t('message.authorName')">
           <el-input
             type="text"
             v-model="formAuthor.name"
@@ -26,7 +26,7 @@
             :class="{ warning: nameExist }"
           ></el-input>
         </el-form-item>
-        <el-form-item label="作者简介">
+        <el-form-item :label="$t('message.introduction')">
           <el-input
             type="textarea"
             v-model="formAuthor.description"
@@ -35,15 +35,15 @@
         </el-form-item>
 
         <el-form-item>
-          <el-button type="primary" @click="uploadAuthor">立即创建</el-button>
-          <el-button @click="resetAuthorForm">重置</el-button>
+          <el-button type="primary" @click="uploadAuthor">{{$t('message.submit')}}</el-button>
+          <el-button @click="resetAuthorForm">{{$t('message.reset')}}</el-button>
         </el-form-item>
       </el-form>
     </div>
 
     <div class="upload-article" v-show="uploadMode == 1">
-      <el-form ref="form" :model="formArticle" label-width="80px">
-        <el-form-item label="作者姓名">
+      <el-form ref="form" :model="formArticle" label-width="120px">
+        <el-form-item :label="$t('message.authorName')">
           <el-input
             type="text"
             v-model="formArticle.name"
@@ -52,11 +52,11 @@
             :class="{ warning: authorId == -1 }"
           ></el-input>
         </el-form-item>
-        <el-form-item label="作品名称">
+        <el-form-item :label="$t('message.title')">
           <el-input v-model="formArticle.title"> </el-input>
         </el-form-item>
 
-        <el-form-item label="内容">
+        <el-form-item :label="$t('message.mainText')">
           <el-input
             type="textarea"
             v-model="formArticle.text"
@@ -65,8 +65,8 @@
         </el-form-item>
 
         <el-form-item>
-          <el-button type="primary" @click="uploadArticle">立即创建</el-button>
-          <el-button @click="resetArticleForm">重置</el-button>
+          <el-button type="primary" @click="uploadArticle">{{$t('message.submit')}}</el-button>
+          <el-button @click="resetArticleForm">{{$t('message.reset')}}</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -99,12 +99,12 @@ export default {
       description = description.trim();
       if (!(name && description)) {
         return this.$message({
-          message: "输入不能为空",
+          message:this.$t('message.warningNull'),
           type: "warning",
         });
       } else if (this.nameExist) {
         return this.$message({
-          message: "作者已存在",
+          message: this.$t('message.authorExists'),
           type: "warning",
         });
       }
@@ -115,12 +115,12 @@ export default {
           description,
         });
         this.$message({
-          message: "上传成功",
+          message: this.$t('message.uploadSucceed'),
           type: "success",
         });
       } catch (error) {
         this.$message({
-          message: "上传失败",
+          message: $t('message.uploadFailed'),
           type: "warning",
         });
       } finally {
@@ -146,7 +146,7 @@ export default {
 
         if (result) {
           this.$message({
-            message: "作者已存在",
+            message: this.$t('message.authorNotExists'),
             type: "warning",
           });
         }
@@ -183,12 +183,12 @@ export default {
 
       if (!(title && text)) {
         return this.$message({
-          message: "输入不能为空",
+          message: this.$t('message.warningNull'),
           type: "warning",
         });
       } else if (this.authorId == -1) {
         return this.$message({
-          message: "不存在的作者",
+          message: this.$t('message.authorNotExists'),
           type: "warning",
         });
       }
@@ -200,12 +200,12 @@ export default {
           author_id: this.authorId,
         });
         this.$message({
-          message: "上传成功",
+          message: this.$t('message.uploadSucceed'),
           type: "success",
         });
       } catch (error) {
           this.$message({
-              message:'上传失败',
+              message:this.$t('message.uploadFailed'),
               type:'warning'
           })
       }finally{

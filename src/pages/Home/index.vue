@@ -1,12 +1,12 @@
 <template>
   <div class="row">
-    <h4>Welcome to Digital Humainty Project</h4>
+    <h4>{{$t('message.welcome')}}</h4>
     <button class="btn btn-info" @click="$router.push({ path: '/search' })">
-      <span style="color: white">点击</span> &nbsp;搜索
+      <span style="color: white">{{$t('message.click')}}</span> &nbsp;{{$t('message.search')}}
     </button>
 
     <el-container>
-      <el-header>最新</el-header>
+      <el-header>{{$t('message.latest')}}</el-header>
       <el-main class="new-book clearfix">
         <el-table
           :show-header="false"
@@ -43,7 +43,7 @@
         </el-table>
       </el-main>
 
-      <el-header>推荐</el-header>
+      <el-header>{{$t('message.recommend')}}</el-header>
       <el-main class="subrow clearfix">
         <div class="column" v-for="r in recommend" :key="r.title">
           <h4 class="title">{{ r.title }}</h4>

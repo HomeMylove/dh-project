@@ -3,7 +3,7 @@
     <div class="discussion-header">
       <div class="discussion-search clearfix">
         <div>
-          <div class="all-discussion" @click="searchAll">全部讨论</div>
+          <div class="all-discussion" @click="searchAll">{{$t('message.allDiscussion')}}</div>
           <input
             type="text"
             placeholder="Search for..."
@@ -11,7 +11,7 @@
             @keyup.enter="searchByKeyword"   
           />
         </div>
-        <button @click="searchByKeyword">Serach</button>
+        <button @click="searchByKeyword">{{$t('message.search')}}</button>
       </div>
 
       <div class="discussion-add clearfix">
@@ -22,7 +22,7 @@
               type="textarea"
               rows="3"
               v-model="form.comment"
-              placeholder="说点儿什么"
+              :placeholder="$t('message.saySth')"
               class="comment-input"
             >
             </el-input>
@@ -33,14 +33,14 @@
               type="primary"
               class="comment-submit"
               @click="openDialog('comment')"
-              >发表<br />讨论</el-button
+              >{{$t('message.send')}}<br />{{$t('message.sendDiscussion')}}</el-button
             >
           </el-form-item>
         </el-form>
 
         <!-- 提交选项 -->
         <el-dialog
-          title="请选择一个头像"
+          :title="$t('message.chooseAvatar')"
           :visible.sync="formVisible"
           class="choose-gender"
         >
@@ -67,29 +67,29 @@
             </ul>
           </el-form>
           <div slot="footer" class="dialog-footer">
-            <el-button @click="formVisible = false">取 消</el-button>
-            <el-button type="primary" @click="sendDiscussion">确 定</el-button>
+            <el-button @click="formVisible = false">{{$t('message.cancel')}}</el-button>
+            <el-button type="primary" @click="sendDiscussion">{{$t('message.confirm')}}</el-button>
           </div>
         </el-dialog>
       </div>
 
       <div class="discussion-show clearfix">
         <div class="discussion-show-header">
-          <h1>{{ discussions.length }}条讨论</h1>
+          <h1>{{ discussions.length }} {{$t('message.discussionCount')}}</h1>
           <h2 class="clearfix">
             <ul>
               <li
                 @click="changeOrder('desc')"
                 :class="{ active: order == 'desc' }"
               >
-                时间降序
+                {{$t('message.timeAsc')}}
               </li>
               <li>|</li>
               <li
                 @click="changeOrder('asc')"
                 :class="{ active: order == 'asc' }"
               >
-                时间升序
+                {{$t('message.timeDesc')}}
               </li>
             </ul>
           </h2>
@@ -114,7 +114,7 @@
                     <p v-html="row.comment"></p>
                   
                   <span class="comt-time">{{ row.time }}</span>
-                  <span class="reply-btn" @click="showEdit(row)">回复</span>
+                  <span class="reply-btn" @click="showEdit(row)">{{$t('message.reply')}}</span>
 
                   <!-- 评论的回复 -->
                   <div class="comment-reply" v-show="row.reply.length > 0">
@@ -168,7 +168,7 @@
                           type="textarea"
                           rows="3"
                           v-model="form.reply"
-                          placeholder="说点儿什么"
+                          :placeholder="$t('message.saySth')"
                           class="comment-input"
                           :ref="row.id"
                         >
@@ -180,7 +180,8 @@
                           type="primary"
                           class="comment-submit"
                           @click="openDialog('reply')"
-                          >发表<br />讨论</el-button
+                          >{{$t('message.send')}}<br />{{$t('message.sendDiscussion')}}</el-button
+                          
                         >
                       </el-form-item>
                     </el-form>
@@ -227,7 +228,7 @@ export default {
         (type == "reply" && reply.trim() == "")
       ) {
         return this.$message({
-          message: "输入不能为空",
+          message: this.$t('message.warningNull'),
           type: "warning",
         });
       }
@@ -405,7 +406,7 @@ export default {
           color: #fff;
           line-height: 20px;
           font-size: 14px;
-          width: 70px;
+          width: 80px;
           height: 72px;
           padding: 4px 15px;
         }
@@ -579,7 +580,7 @@ export default {
                 color: #fff;
                 line-height: 20px;
                 font-size: 14px;
-                width: 70px;
+                width: 80px;
                 height: 72px;
                 padding: 4px 15px;
               }

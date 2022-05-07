@@ -3,26 +3,51 @@
     <header>
       <div class="middle clearfix">
         <!-- 左边标题 -->
-        <span class="title">Library of Japanese Literature</span>
+        <span class="title" @click="$router.push({path:'home'})">{{$t('message.mainName')}}</span>
 
         <!-- 右边导航栏 -->
         <ul ref="navBar">
+          <li class="lang-change">
+            <el-dropdown @command="changeLang">
+              <span class="el-dropdown-link">
+                {{lang}}<i class="el-icon-arrow-down el-icon--right"></i>
+              </span>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item 
+                :command="lang"
+                v-for="lang in langs"
+                :key="lang.name"
+                >{{lang.local}}</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+          </li>
           <li>
-            <router-link to="/home" class="active" @click.native="choose($event)"
-              >Home</router-link
+            <router-link
+              to="/home"
+              class="active"
+              @click.native="choose($event)"
+              >{{$t('message.home')}}</router-link
             >
           </li>
           <li>
-            <router-link to="/search" @click.native="choose($event)">Search</router-link>
+            <router-link to="/search" @click.native="choose($event)"
+              >{{$t('message.search')}}</router-link
+            >
           </li>
           <li>
-            <router-link to="/upload" @click.native="choose($event)">Upload</router-link>
+            <router-link to="/upload" @click.native="choose($event)"
+              >{{$t('message.upload')}}</router-link
+            >
           </li>
           <li>
-            <router-link to="/discussion" @click.native="choose($event)">Discussion</router-link>
+            <router-link to="/discussion" @click.native="choose($event)"
+              >{{$t('message.discussion')}}</router-link
+            >
           </li>
           <li>
-            <router-link to="/external" @click.native="choose($event)">Github</router-link>
+            <router-link to="/external" @click.native="choose($event)"
+              >Github</router-link
+            >
           </li>
         </ul>
       </div>
@@ -34,9 +59,15 @@
 export default {
   name: "Header",
   data() {
-    return {};
+    return {
+      langs:[
+        {name:'cn',local:'中文'},
+        {name:'en',local:'English'},
+        {name:'jp',local:'日本語'}
+      ],
+      lang:'中文'
+    };
   },
-
   methods: {
     choose(e) {
       const li = e.target.parentNode;
@@ -48,6 +79,10 @@ export default {
           lis[i].children[0].classList.add("active");
         }
       }
+    },
+     changeLang(lang) {
+      this.$i18n.locale = lang.name
+      this.lang = lang.local
     },
   },
 };
@@ -74,7 +109,9 @@ header {
       top: 10px;
       color: #212529;
       font: 24px -apple-system;
+      cursor: pointer;
     }
+  
 
     ul {
       float: right;
@@ -84,6 +121,14 @@ header {
         color: #0d6efd;
         // background-color: cyan;
         list-style: none;
+
+        .el-dropdown-link {
+          cursor: pointer;
+          color: #409eff;
+        }
+        .el-icon-arrow-down {
+          font-size: 12px;
+        }
 
         a {
           color: #0d6efd;
@@ -96,6 +141,9 @@ header {
           background-color: #0d6efd;
           border-radius: 6px;
         }
+      }
+      li.lang-change {
+        margin-right: 20px;
       }
     }
   }

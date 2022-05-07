@@ -1,7 +1,7 @@
 <template>
   <div class="container-search">
     <form action="#">
-      <h4>请输入关键词,按下 enter 或点击 Search</h4>
+      <h4>{{ $t("message.searchHip") }}</h4>
 
       <!-- 输入框 -->
       <div class="input-search clearfix">
@@ -28,12 +28,12 @@
             v-model="keyword"
           />
         </div>
-        <button @click.prevent="getInfo">Serach</button>
+        <button @click.prevent="getInfo">{{ $t("message.search") }}</button>
       </div>
 
       <!-- 展示 -->
       <div class="show">
-        <h2>{{ info.length }} Results Found</h2>
+        <h2>{{ info.length }} {{ $t("message.searchResults") }}</h2>
 
         <!-- 结果列表 作者 -->
         <div v-show="ifShowAuthor">
@@ -41,11 +41,15 @@
             <el-table-column
               type="index"
               align="center"
-              label="序号"
+              :label="$t('message.number')"
               width="80"
             >
             </el-table-column>
-            <el-table-column prop="prop" label="姓名" width="180">
+            <el-table-column
+              prop="prop"
+              :label="$t('message.authorName')"
+              width="180"
+            >
               <template slot-scope="{ row }">
                 <router-link
                   :to="`/details/?authorId=${row.authorId}`"
@@ -54,7 +58,8 @@
                 >
               </template>
             </el-table-column>
-            <el-table-column prop="about" label="简介"> </el-table-column>
+            <el-table-column prop="about" :label="$t('message.introduction')">
+            </el-table-column>
           </el-table>
         </div>
 
@@ -63,11 +68,15 @@
             <el-table-column
               type="index"
               align="center"
-              label="序号"
+              :label="$t('message.number')"
               width="80"
             >
             </el-table-column>
-            <el-table-column prop="authorName" label="作者" width="180">
+            <el-table-column
+              prop="authorName"
+              :label="$t('message.authorName')"
+              width="180"
+            >
               <template slot-scope="{ row }">
                 <router-link
                   :to="`/details/?authorId=${row.authorId}`"
@@ -76,7 +85,7 @@
                 >
               </template>
             </el-table-column>
-            <el-table-column prop="title" label="书名">
+            <el-table-column prop="title" :label="$t('message.title')">
               <template slot-scope="{ row }">
                 <router-link
                   :to="`/read/?articleId=${row.articleId}`"
@@ -117,7 +126,10 @@ export default {
   methods: {
     getInfo() {
       if (this.keyword == "") {
-        return alert("输入不能为空");
+        return this.$message({
+          message: "输入不能为空",
+          type: "warning",
+        });
       }
       this.$store.dispatch("search/getInfo", {
         choice: this.choice,

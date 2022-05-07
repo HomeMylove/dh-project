@@ -1,12 +1,12 @@
 <template>
   <div class="comment-container">
     <div class="comment-header">
-      <h1>{{comments.length}}条评论</h1>
+      <h1>{{comments.length}} {{$t('message.comtCount')}}</h1>
       <h2 class="clearfix">
         <ul>
-          <li @click="changeOrder('desc')" :class="{active:order=='desc'}">时间降序</li>
+          <li @click="changeOrder('desc')" :class="{active:order=='desc'}">{{$t('message.timeDesc')}}</li>
           <li>|</li>
-          <li @click="changeOrder('asc')" :class="{active:order=='asc'}">时间升序</li>
+          <li @click="changeOrder('asc')" :class="{active:order=='asc'}">{{$t('message.timeAsc')}}</li>
         </ul>
       </h2>
     </div>
@@ -24,7 +24,7 @@
           type="textarea"
           rows="3"
           v-model="form.comment"
-          placeholder="说点儿什么"
+          :placeholder="$t('message.saySth')"
           class="comment-input"
         >
         </el-input>
@@ -32,14 +32,14 @@
 
       <el-form-item>
         <el-button type="primary" class="comment-submit" @click="openDialog"
-          >发表<br />评论</el-button
+          >{{$t('message.send')}}<br />{{$t('message.comt')}}</el-button
         >
       </el-form-item>
     </el-form>
 
     <!-- 提交选项 -->
     <el-dialog
-      title="请选择一个头像"
+      :title="$t('message.chooseAvatar')"
       :visible.sync="formVisible"
       class="choose-gender"
     >
@@ -144,7 +144,7 @@ export default {
         await this.$store.dispatch("comment/sendComment", data);
         
         this.$message({
-            message:'评论成功',
+            message:this.$t('message.comtSucceed'),
             type:'success'
         })
         
@@ -154,7 +154,7 @@ export default {
       } catch (error) {
         console.log(error);
         this.$message({
-          message: "评论失败",
+          message: this.$t('message.comtFailed'),
           type: "warning",
         });
       }finally{
@@ -235,7 +235,7 @@ export default {
       color: #fff;
       line-height: 20px;
       font-size: 14px;
-      width: 70px;
+      width: 80px;
       height: 72px;
       padding: 4px 15px;
     }

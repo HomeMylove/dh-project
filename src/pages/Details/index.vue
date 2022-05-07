@@ -5,7 +5,7 @@
     <div class="introduction">
       <el-row>
         <el-col :span="24"
-          ><div class="grid-content bg-purple-dark">作者简介</div></el-col
+          ><div class="grid-content bg-purple-dark">{{$t('message.introduction').toUpperCase()}}</div></el-col
         >
       </el-row>
 
@@ -17,15 +17,15 @@
     <div class="articles">
       <el-row>
         <el-col :span="24"
-          ><div class="grid-content bg-purple-dark">主要作品</div></el-col
+          ><div class="grid-content bg-purple-dark">{{$t('message.mainWorks').toUpperCase()}}</div></el-col
         >
       </el-row>
 
       <template>
         <el-table :data="articles" stripe :style="{width: '60%','margin-left':'20%'}">
-          <el-table-column type="index" align="center" label="序号" width="180">
+          <el-table-column type="index" align="center" :label="$t('message.number')" width="180">
           </el-table-column>
-          <el-table-column prop="" align="center" label="作品名称" width="width">
+          <el-table-column prop="" align="center" :label="$t('message.workName')" width="width">
             <template slot-scope="{row}">
              <router-link :to="`/read/?articleId=${row.articleId}`" :style="{'text-decoration':'none'}"> {{row.title}}</router-link>
             </template>

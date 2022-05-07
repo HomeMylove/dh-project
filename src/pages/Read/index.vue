@@ -3,7 +3,7 @@
     <div class="show-article" v-show="true">
       <h1>{{ article["title"] }}</h1>
       <el-button @click="copyUrl" class="share-btn" icon="el-icon-share">
-        分享
+        {{$t('message.share')}}
         <!-- <i class="iconfont icon-fuzhi"></i> -->
       </el-button>
       <h2>
@@ -16,6 +16,7 @@
       </h2>
       <pre>{{ article["text"] }}</pre>
     </div>
+
 
     <Comments />
   </div>
